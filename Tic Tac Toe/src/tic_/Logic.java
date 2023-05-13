@@ -1,0 +1,41 @@
+package tic_;
+
+public class Logic {
+    public int side = 3;
+    public int length = side * side; //это если мы хоодим сделать нашу игру большего размера
+    public String[] array = new String[length]; // заполняется массив данными после каждого хода
+    Result result = new Result(side, side, 3);
+    Counter counter = new Counter(result);
+    public void startPosition(){
+        array = new String[length];
+        int index = (int) (Math.random() *length);
+        array[index] = "X";
+    }
+
+    public String result() {
+        return result.process(array);
+    }
+
+    public boolean write(int index, String symbol) {
+        if (array[index] == null) {
+            array[index] = symbol;
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean positionUser(int index) { //Данный метод вызывается из кнопки и в него кнопка отправляет свой индекс.
+        // Т.е. если нажимается на кнопку 8, то это означает что юхер пошел на 8 поле. Потом поэкспериментировать с этим методом!!!!!!
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        return write(index, "0");
+    }
+
+    public boolean positionPC() {
+
+
+
+        return write(counter.process(array), "X");
+        //После того как пользователь пошел, вызывается этот метод и ходит компьютер
+    }
+}
